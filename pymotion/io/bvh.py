@@ -71,6 +71,9 @@ class BVH:
         frame = 0
 
         for line in f:
+            if not line.strip():
+                continue
+
             if not reading_frames:
                 if "HIERARCHY" in line or "MOTION" in line or "{" in line:
                     continue
