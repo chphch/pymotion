@@ -1,3 +1,4 @@
+from typing import List
 import numpy as np
 import pymotion.rotations.quat as quat
 import copy
@@ -34,15 +35,15 @@ class BVH:
         ------
         self.data : dict
             dictionary with the data.
-            ["names"] : list[str]
+            ["names"] : List[str]
                 ith-element contain the name of ith-joint.
             ["offsets"] : np.array[n_joints, 3]
                 ith-element contain the offset of ith-joint wrt. its parent joint.
             ["end_sites"] : np.array[n_end_sites, 3]
                 ith-element contain the offset of ith-end-site wrt. its parent joint.
-            ["end_sites_parents"] : list[int]
+            ["end_sites_parents"] : List[int]
                 ith-element contain the joint parent of the ith end-site.
-            ["parents"] : list[int]
+            ["parents"] : List[int]
                 ith-element contain the parent of the ith joint.
             ["rot_order"] : np.array[n_joints, 3]
                 order per channel of the rotations. The order is 'x', 'y' or 'z'.
@@ -239,13 +240,13 @@ class BVH:
         self.data["end_sites"] *= scale
         self.data["positions"] *= scale
 
-    def set_order_joints(self, order: list[int]):
+    def set_order_joints(self, order: List[int]):
         """
         Sets the order of the joints in the .bvh file.
 
         Parameters
         ----------
-        order : list[int]
+        order : List[int]
             for each joint j, order[j] is the new index of the joint j.
 
         """
@@ -267,13 +268,13 @@ class BVH:
         self.data["positions"] = self.data["positions"][:, reverse_order]
         self.data["rotations"] = self.data["rotations"][:, reverse_order]
 
-    def remove_joints(self, delete_joints: list[int]):
+    def remove_joints(self, delete_joints: List[int]):
         """
         Removes joints from the .bvh file.
 
         Parameters
         ----------
-        delete_joints : list[int]
+        delete_joints : List[int]
             list of joint indices to remove.
         """
 
@@ -339,13 +340,13 @@ class BVH:
             unrolled local rotations (transformed to quaternions).
         pos : np.array[n_frames, n_joints, 3]
             local positions.
-        parents : list[int]
+        parents : List[int]
             ith-element contain the parent of the ith joint.
         offsets : np.array[n_joints, 3]
             ith-element contain the offset of ith-joint wrt. its parent joint.
         end_sites : np.array[n_joints, 3]
             ith-element contain the offset of ith-end-site wrt. its parent joint.
-        end_sites_parents : list[int]
+        end_sites_parents : List[int]
             ith-element contain the joint parent of the ith end-site.
         """
         rots = quat.unroll(
@@ -375,7 +376,7 @@ class BVH:
             local rotations (quaternions).
         pos : np.array[n_frames, n_joints, 3]
             local positions.
-        parents : list[int]
+        parents : List[int]
             ith-element contain the parent of the ith joint.
         offsets : np.array[n_joints, 3]
             ith-element contain the offset of ith-joint wrt. its parent joint.

@@ -1,4 +1,5 @@
 from __future__ import annotations
+from typing import List
 import numpy as np
 import plotly.graph_objects as go
 from dash import Dash, html, dcc, callback, ctx, Output, Input
@@ -388,7 +389,7 @@ def _create_mesh_sphere(
 
 
 def _create_floor(
-    height: float = 0.0, size: float = 1.0, step: float = 0.1, colors: list[str] = ["lightgrey", "darkgrey"]
+    height: float = 0.0, size: float = 1.0, step: float = 0.1, colors: List[str] = ["lightgrey", "darkgrey"]
 ) -> go.Mesh3d:
     """
     Creates a floor plane with a checkerboard pattern.
@@ -397,7 +398,7 @@ def _create_floor(
         height (float): Height (z-coordinate) of the floor. Defaults to 0.0.
         size (float): Size of the floor along x and y directions. Defaults to 1.0.
         step (float): Size of each checkerboard square. Defaults to 0.1.
-        colors (list[str]): A list of two colors for the checkerboard pattern. Defaults to ["lightgrey", "darkgrey"].
+        colors (List[str]): A list of two colors for the checkerboard pattern. Defaults to ["lightgrey", "darkgrey"].
 
     Returns:
         go.Mesh3d: Plotly Mesh3d object representing the floor.
@@ -436,7 +437,7 @@ def _create_skeleton(
     line_width: float = 2.0,
     radius_joints: float = 0.025,
     resolution: float = np.pi / 8,
-) -> list[go.Scatter3d | go.Mesh3d]:
+) -> List[go.Scatter3d | go.Mesh3d]:
     """
     Creates Plotly objects for a skeleton using a NumPy array of joint positions.
 
@@ -451,7 +452,7 @@ def _create_skeleton(
         resolution (float): Angular resolution for sphere meshes (`mesh` mode). Defaults to np.pi/8.
 
     Returns:
-        list[go.Scatter3d | go.Mesh3d]: A list of Plotly go.Scatter3d and/or go.Mesh3d objects representing the skeleton.
+        List[go.Scatter3d | go.Mesh3d]: A list of Plotly go.Scatter3d and/or go.Mesh3d objects representing the skeleton.
     """
 
     sphere_data = []
